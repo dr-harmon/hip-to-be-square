@@ -64,6 +64,55 @@ TEST_CASE("ABBA UBBU ALAN ALDA has 2 squares") {
     REQUIRE(containsSquare(squares, Square(0, 1, 1)));
 }
 
+TEST_CASE("ABSOS BBWER BBSDS MMSNS MMSBS has 4 squares") {
+    // A B S O S
+    // B B W E R
+    // B B S D S
+    // M M S N S
+    // M M S B S
+    LetterGrid grid("ABSOS BBWER BBSDS MMSNS MMSBS");
+    auto squares = grid.getValidSquares();
+    REQUIRE(squares.size() == 4);
+    REQUIRE(containsSquare(squares, Square(0, 2, 2)));
+    REQUIRE(containsSquare(squares, Square(1, 0, 1)));
+    REQUIRE(containsSquare(squares, Square(2, 2, 2)));
+    REQUIRE(containsSquare(squares, Square(3, 0, 1)));
+}
+
+TEST_CASE("ABSOS BJWER BBSDV MMSNS MPSBS has 0 squares") {
+    // A B S O S
+    // B J W E R
+    // B B S D V
+    // M M S N S
+    // M P S B S
+    LetterGrid grid("ABSOS BJWER BBSDV MMSNS MPSBS");
+    auto squares = grid.getValidSquares();
+    REQUIRE(squares.size() == 0);
+}
+
+TEST_CASE("MM MM has 1 square") {
+    // M M
+    // M M
+    LetterGrid grid("MM MM");
+    auto squares = grid.getValidSquares();
+    REQUIRE(squares.size() == 1);
+    REQUIRE(containsSquare(squares, Square(0, 0, 1)));
+}
+
+TEST_CASE("EEE EEE EEE has 5 squares") {
+    // E E E
+    // E E E
+    // E E E
+    LetterGrid grid("EEE EEE EEE");
+    auto squares = grid.getValidSquares();
+    REQUIRE(squares.size() == 5);
+    REQUIRE(containsSquare(squares, Square(0, 0, 1)));
+    REQUIRE(containsSquare(squares, Square(0, 0, 2)));
+    REQUIRE(containsSquare(squares, Square(0, 1, 1)));
+    REQUIRE(containsSquare(squares, Square(1, 0, 1)));
+    REQUIRE(containsSquare(squares, Square(1, 1, 1)));
+}
+
 unique_ptr<LetterGrid> createGrid(int length)
 {
     int size = length * length + length - 1;
@@ -81,34 +130,34 @@ TEST_CASE("Benchmark") {
         return createGrid(n);
     });
 
-    BENCHMARK("Benchmark 1") {
-        return grids[0]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 2") {
-        return grids[1]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 3") {
-        return grids[2]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 4") {
-        return grids[3]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 5") {
-        return grids[4]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 6") {
-        return grids[5]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 7") {
-        return grids[6]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 8") {
-        return grids[7]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 9") {
-        return grids[8]->getValidSquares();
-    };
-    BENCHMARK("Benchmark 10") {
-        return grids[9]->getValidSquares();
-    };
+    // BENCHMARK("Benchmark 1") {
+    //     return grids[0]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 2") {
+    //     return grids[1]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 3") {
+    //     return grids[2]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 4") {
+    //     return grids[3]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 5") {
+    //     return grids[4]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 6") {
+    //     return grids[5]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 7") {
+    //     return grids[6]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 8") {
+    //     return grids[7]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 9") {
+    //     return grids[8]->getValidSquares();
+    // };
+    // BENCHMARK("Benchmark 10") {
+    //     return grids[9]->getValidSquares();
+    // };
 }
