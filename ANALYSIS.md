@@ -2,7 +2,9 @@
 
 ## Space Complexity
 
-The data structure is a 2D array with the same number of elements as the size of the grid. Therefore the space complexity is `O(n)`.
+In the solution shown here, the string input is transformed into a 2D array for processing. Since this data structure has the same number of elements as the size of the grid, the space complexity of the algorithm is `O(n)`. (It is possible to implement the solution by examining the string input directly, in which case the space complexity would be `O(1)`.)
+
+Note that the inner `for` loop appears to be a Gauss summation, but this does not apply because the loop bound is at most `√n`, not `n`.
 
 ## Time Complexity
 
